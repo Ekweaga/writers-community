@@ -1,8 +1,35 @@
-import React from 'react'
+import React,{useEffect,useState,useContext} from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
+import {useRouter} from "next/router"
+import { collection,   getDocs } from "firebase/firestore";
+import {firebaseapp} from "./components/firebase"
+import {getFirestore} from "firebase/firestore"
+import { Auth } from './components/Context';
+
 
 function Melodax() {
+const [lists,setLists] = useState([])
+const projectfirestore = getFirestore(firebaseapp)
+const {user} = useContext(Auth)
+const router = useRouter();
+const getPosts = async () =>{
+
+  const querySnapshot = await getDocs(collection(projectfirestore, "posts"));
+  querySnapshot.forEach((doc) => {
+    const listItem = []
+    listItem.push(doc.data())
+    setLists(listItem)
+    console.log(doc.data(),lists)
+    // doc.data() is never undefined for query doc snapshots
+   
+  });
+}
+
+  useEffect(()=>{
+    getPosts()
+
+  })
   return (
     <>
 
@@ -18,7 +45,7 @@ function Melodax() {
         <h1 className='text-6xl font-bold mb-[20px]'>Stay Curious and <br/>Ready To Learn</h1>
         <p>Discover stories, thinking, and expertise from writers on any topic.</p>
         <div className='mt-[50px]'>
-          <button className='bg-white text-[#E23972] p-2 rounded-full w-[200px]'>Start reading</button>
+          <button className='bg-white text-[#E23972] p-2 rounded-full w-[200px]'>{user ? <span onClick={()=>router.push("createpost")}>Create Post</span> : <span  onClick={()=>router.push('login')}>Start reading</span> }</button>
         </div>
       </div>
       <div className='p-4'>
@@ -29,9 +56,15 @@ function Melodax() {
 
     </div>
 
-    <div className='mt-[100px]'>
-
-      firebase fetching data
+    <div className='mt-[100px] h-[100vh] '>
+<div className='flex flex-col ml-[150px]'>
+    {lists.map((item)=>{
+      return(
+     <div  key={item.id}> <h1 className="text-3xl font-bold">{item?.title}</h1>
+     <p>{item?.post}</p></div>
+      )
+    })}
+    </div>
     </div>
     </>
   )

@@ -1,8 +1,10 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import {useRouter} from "next/router"
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
+  const router = useRouter();
   return (
     <>
       <Head>
@@ -21,7 +23,7 @@ export default function Home() {
             <h1 className="md:text-7xl text-[#71341A] text-6xl ">Tell your <br/>own story</h1>
             <p className='w-[350px] mt-[30px] text-sm'>Community of different writers and readers, you can wite your own story and read other people stories</p>
             <div>
-              <button className='text-white bg-[#231A36] p-2 rounded-full w-[170px] mt-[30px]'>Get Started</button>
+              <button className='text-white bg-[#231A36] p-2 rounded-full w-[170px] mt-[30px]' onClick={()=>router.push("signup")}>Get Started</button>
             </div>
           </div>
           <div className='md:-mt-[350px] mt-[100px]'>
@@ -58,7 +60,7 @@ export default function Home() {
   <h3 className='text-[#FBBA33] font-bold text-sm mb-[6px]'>COMMUNITY</h3>
             <h1 className='text-2xl font-bold mb-[10px]'>Community Marketing</h1>
             <p>Bring your relationships with higher heights with other writers and readers on our platform</p>
-            <p className='text-[#FBBA33] mt-[30px]'>Join Us</p>
+            <p className='text-[#FBBA33] mt-[30px] cursor-pointer' onClick={()=>router.push("signup")}>Join Us</p>
 
   </div>
  
@@ -71,7 +73,7 @@ export default function Home() {
   <h3 className='text-[#C66DE4] font-bold text-sm mb-[6px]'>SERVICES</h3>
             <h1 className='text-2xl font-bold mb-[10px]'>Managed Services</h1>
             <p>Our full services solutions allow writers to put/Store their ideas  or knowledge in one place which they share to other people on/out of the platform </p>
-            <p className='text-[#C66DE4] mt-[30px]'>Login</p>
+            <p className='text-[#C66DE4] mt-[30px] cursor-pointer' onClick={()=>router.push("login")}>Login</p>
 
   </div>
 
@@ -180,8 +182,8 @@ export default function Home() {
             <p className='text-center text-1xl mt-[20px]'>Good accountability and comments from users encourages us to provide more features</p>
           </div>
 
-          <div className='flex mt-[80px] items-center justify-center gap-[150px]'>
-            <div className='w-[400px]'>
+          <div className='flex mt-[80px] items-center justify-center gap-[150px] flex-col md:flex-row'>
+            <div className='md:w-[400px] px-2'>
               <p>
                 Not weekly or monthly like other sites out there. This ensures proper writing platform for authors to bleed their intentions and also teach other users on the internet
               </p>
