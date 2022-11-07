@@ -57,12 +57,12 @@ const getPosts = async () =>{
 
     </div>
 
-    <div className='mt-[100px] h-[100vh] '>
-<div className='flex flex-col ml-[150px]'>
+    <div className='mt-[100px] md:h-[100vh]  '>
+<div className=' md:ml-[150px] grid grid-cols-1 md:grid-cols-4 gap-[20px]'>
     {lists.map((item)=>{
       return(
-     <div  key={item.id} className="cursor-pointer"> <h1 className="text-3xl font-bold">{item?.title}</h1>
-     <p>{item?.post}</p>
+     <div  key={item.id} className="cursor-pointer w-[300px]"> <h1 className="text-2xl font-bold">{item?.title}</h1>
+     <p className="text-sm">{item?.post.substring(0,300)}</p>
      <span className="cursor-pointer text-[#231A36]">Read more</span></div>
       )
     })}
