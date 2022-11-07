@@ -13,7 +13,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header  className=' md:-mt-[70px] '>
+      <header  className='  '>
         <div className=' md:block hidden'>
         <Image src="/Mask Group.png" width={1400} height={500} alt="bg" ></Image>
        

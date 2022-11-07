@@ -1,31 +1,34 @@
-import React,{useState} from 'react'
+import React,{useState,useContext} from 'react'
 import Image from "next/image"
 import Link from 'next/link'
-
+import { Auth } from './Context';
+import {useRouter} from "next/router"
 function Navbar() {
     const [open,setOpen] = useState(false)
+    const {user} = useContext(Auth)
+    const router = useRouter();
   return (
   <>
-  <nav className='flex md:justify-around items-center p-4 z-10 shadow justify-between'>
+  <nav className='flex md:justify-around items-center p-4 z-10 shadow justify-between fixed bg-white top-0 left-0 right-0 z-10'>
     <div>
-        <h1 className='font-bold'>Melodax.</h1>
+        <h1 className='font-bold cursor-pointer' onClick={()=>router.push('/')}>Melodax.</h1>
     </div>
 
     <div>
         <ul className='md:flex items-center justify-around text-sm gap-[30px] hidden'>
-            <li>
+            <li className="cursor-pointer"  onClick={()=>router.push('/')}>
                 Home
             </li>
-            <li>
+            <li className="cursor-pointer">
                 About Us
             </li>
-            <li>
+            <li className="cursor-pointer">
                 Services
             </li>
-            <li>
+            <li className="cursor-pointer">
                 Community
             </li>
-            <li>Login</li>
+            <li>{user? <span>Logout{`>>`}</span>:<span>Login</span>}</li>
         </ul>
     </div>
     <div
@@ -50,7 +53,7 @@ function Navbar() {
                 <li  onClick={() => setOpen(!open)}>Get Started</li>
                 <li  onClick={() => setOpen(!open)}>Our Solutions</li>
                
-                <li> <button className='text-white bg-[#2BD0D0] w-[100px] p-2 shadow' style={{borderRadius:'20px'}} ><Link href="login">Login</Link></button></li>
+                <li>{user? <span>Logout{`>>`}</span>:<span>Login</span>}</li>
           </ul>
         </div>
   </nav>

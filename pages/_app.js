@@ -3,11 +3,13 @@ import { AuthProvider } from './components/Context'
 import Layout from './components/Layout'
 
 function MyApp({ Component, pageProps }) {
-  return (<Layout>
-    <AuthProvider>
+  return (
+    <AuthProvider><Layout>
+  
     <Component {...pageProps} />
-    </AuthProvider>
-    </Layout>)
+   
+    </Layout>
+    </AuthProvider>)
 }
 
 export default MyApp
