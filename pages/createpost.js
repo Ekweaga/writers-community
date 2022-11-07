@@ -27,7 +27,8 @@ const {user} = useContext(Auth)
        post:post,
         id:user.uid
       });
-      
+      setPost('')
+      setTitle('')
     }
   
   

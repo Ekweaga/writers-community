@@ -2,7 +2,7 @@ import React,{useEffect,useState,useContext} from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import {useRouter} from "next/router"
-import { collection,   getDocs } from "firebase/firestore";
+import { collection,   onSnapshot,query } from "firebase/firestore";
 import {firebaseapp} from "./components/firebase"
 import {getFirestore} from "firebase/firestore"
 import { Auth } from './components/Context';
@@ -15,15 +15,16 @@ const {user} = useContext(Auth)
 const router = useRouter();
 const getPosts = async () =>{
 
-  const querySnapshot = await getDocs(collection(projectfirestore, "posts"));
-  querySnapshot.forEach((doc) => {
-    const listItem = []
-    listItem.push(doc.data())
-    setLists(listItem)
-    console.log(doc.data(),lists)
-    // doc.data() is never undefined for query doc snapshots
-   
+  const querySnapshot =query(collection(projectfirestore, "posts"));
+
+  const unsubscribe = onSnapshot(querySnapshot, (querySnapshot) => {
+    const cities = [];
+    querySnapshot.forEach((doc) => {
+        cities.push(doc.data());
+    });
+   setLists(cities)
   });
+ 
 }
 
   useEffect(()=>{
@@ -40,8 +41,8 @@ const getPosts = async () =>{
       </Head>
 
 
-    <div className="md:h-[450px] bg-[#E23972] text-white py-4 flex justify-around flex-col-reverse md:flex-row ">
-      <div className='ml-[100px] mt-[100px]'>
+    <div className="md:h-[450px] bg-[#E23972] text-white py-4 flex justify-around flex-col md:flex-row ">
+      <div className='md:ml-[100px] md:mt-[100px] mt-[80px] px-3'>
         <h1 className='text-6xl font-bold mb-[20px]'>Stay Curious and <br/>Ready To Learn</h1>
         <p>Discover stories, thinking, and expertise from writers on any topic.</p>
         <div className='mt-[50px]'>

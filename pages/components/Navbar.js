@@ -9,7 +9,7 @@ function Navbar() {
     const router = useRouter();
   return (
   <>
-  <nav className='flex md:justify-around items-center p-4 z-10 shadow justify-between fixed bg-white top-0 left-0 right-0 z-10'>
+  <nav className='flex md:justify-around items-center p-4 shadow justify-between fixed bg-white top-0 left-0 right-0 z-10'>
     <div>
         <h1 className='font-bold cursor-pointer' onClick={()=>router.push('/')}>Melodax.</h1>
     </div>
@@ -43,7 +43,7 @@ function Navbar() {
         
         <div
           className={`md:hidden text-white absolute w-2/3 h-screen z-10
-      px-7 py-2 font-medium bg-[#E23972] z-[999999px] top-0 duration-300 ${
+      px-7 py-2 font-medium bg-[#E23972]  top-0 duration-300 ${
         open ? "left-0 block" : "left-0 hidden"
       }`}
         >
