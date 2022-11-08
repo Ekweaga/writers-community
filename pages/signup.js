@@ -3,11 +3,12 @@ import {useRouter} from "next/router"
 import Link from 'next/link'
 import Head from 'next/head'
 import Image from 'next/image'
-import {createUserWithEmailAndPassword} from 'firebase/auth'
+import {createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider} from 'firebase/auth'
 import {firebaseapp} from "./components/firebase"
 import {getFirestore} from "firebase/firestore"
 import {getAuth} from  "firebase/auth";
 import {setDoc,doc} from "firebase/firestore"
+import{FcGoogle} from 'react-icons/fc'
 
 function Signup() {
 
@@ -17,9 +18,17 @@ function Signup() {
     const [success,setSuccess] = useState(null)
     const [name,setName] = useState('')
     const router = useRouter();
-
+    const provider = new GoogleAuthProvider();
     const projectfirestore = getFirestore(firebaseapp)
     const auth = getAuth(firebaseapp)
+
+    const signUpGoogle = async ()=>{
+      await signInWithPopup(auth,provider).then((result)=>{
+        router.push("melodax")
+      }).catch((err)=>{
+        setError(err.message)
+      })
+    }
     const  signupUser = async (e)=>{
       e.preventDefault();
      // setLoading(true)
@@ -91,7 +100,14 @@ function Signup() {
                    <div><input type="password" placeholder="Password" value={password} className='p-2 w-[300px] rounded focus:outline-none text-black shadow  border-[#FFFF] border-2'  onChange={(e)=>setPassword(e.target.value)}/></div>
                 
                    <div><button className="bg-[#D1358F] p-2 w-[300px] rounded mt-[15px] text-white">Submit</button></div>
+                   <div className='flex items-center justify-center '>
+                    Or
+                   </div>
+                  
                </form>
+               <div className='flex items-center justify-center  border-2 border-[#D1358F] p-2'>
+                    <button className="flex flex-row-reverse gap-[0px]cursor-pointer justify-center items-center" onClick={signUpGoogle}>SignInWithGoogle <FcGoogle className='w-[50px]'/></button>
+                   </div>
               
            
                <div className='py-2'>Already have an account? <span className="text-[#D1358F]"><Link href="login">Login</Link></span> <span></span> </div>
@@ -99,12 +115,7 @@ function Signup() {
 
           
 
-          <div className="absolute bottom-0 left-0">
-            <Image src="/ROYAcVhHo.png" width={500} height={400} alt="icon"></Image>
-          </div>
-          <div className="absolute bottom-0 right-0">
-            <Image src="/NbEGVQIpL.png" width={500} height={400} alt="icon"></Image>
-          </div>
+        
 
        </div>
        </>

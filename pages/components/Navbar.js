@@ -1,12 +1,22 @@
 import React,{useState,useContext} from 'react'
 import Image from "next/image"
-import Link from 'next/link'
+import Link from "next/link"
 import { Auth } from './Context';
 import {useRouter} from "next/router"
+import {signOut} from "firebase/auth"
+import {getAuth} from  "firebase/auth";
+import { firebaseapp } from './firebase';
 function Navbar() {
     const [open,setOpen] = useState(false)
     const {user} = useContext(Auth)
     const router = useRouter();
+    const auth = getAuth(firebaseapp)
+
+    const logout = async ()=>{
+      await signOut(auth)
+      localStorage.clear();
+      router.push("login")
+  }
   return (
   <>
   <nav className='flex md:justify-around items-center p-4 shadow justify-between fixed bg-white top-0 left-0 right-0 z-10'>
@@ -19,16 +29,15 @@ function Navbar() {
             <li className="cursor-pointer"  onClick={()=>router.push('/')}>
                 Home
             </li>
-            <li className="cursor-pointer">
+            <li className="cursor-pointer" >
                 About Us
             </li>
-            <li className="cursor-pointer">
-                Services
-            </li>
-            <li className="cursor-pointer">
+         
+            <li className="cursor-pointer" onClick={()=>router.push('melodax')}>
                 Community
             </li>
-            <li>{user? <span>Logout{`>>`}</span>:<span>Login</span>}</li>
+            <li  className="cursor-pointer">{user? <span>Your Story</span>:<span></span>}</li>
+            <li  className="cursor-pointer">{user? <span onClick={logout}>Logout{`>>`}</span>:<span>Login</span>}</li>
         </ul>
     </div>
     <div
@@ -48,12 +57,15 @@ function Navbar() {
       }`}
         >
           <ul className="flex flex-col justify-center h-[300px] gap-10 py-2 text-lg mt-[100px]">
-          <li  onClick={() => setOpen(!open)}>Home</li>
+          <li  onClick={() => setOpen(!open)}><Link href="/">Home</Link></li>
+          <li className="cursor-pointer" >
+                About Us
+            </li>
                 
-                <li  onClick={() => setOpen(!open)}>Get Started</li>
-                <li  onClick={() => setOpen(!open)}>Our Solutions</li>
+                <li  onClick={() => setOpen(!open)}><Link href="melodax">Community</Link></li>
+                <li  onClick={() => setOpen(!open)}>{user? <span><Link href="story">Your Story</Link></span>:<span></span>}</li>
                
-                <li>{user? <span>Logout{`>>`}</span>:<span>Login</span>}</li>
+                <li>{user? <span onClick={logout}>Logout{`>>`}</span>:<span>Login</span>}</li>
           </ul>
         </div>
   </nav>

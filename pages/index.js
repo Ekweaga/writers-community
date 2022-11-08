@@ -2,9 +2,11 @@ import Head from 'next/head'
 import Image from 'next/image'
 import {useRouter} from "next/router"
 import styles from '../styles/Home.module.css'
+import {useState} from "react"
 
 export default function Home() {
   const router = useRouter();
+  const [open,setOpen] = useState(false)
   return (
     <>
       <Head>
@@ -116,7 +118,7 @@ export default function Home() {
       <div className='mt-[100px] flex-col flex items-center justify-center'>
         <div>
             <h1 className='text-center font-bold tex-4xl'>Our Active Users</h1>
-            <p className='text-center text-sm mt-[20px]'>Here are some of our active users on melodax. Join Us!!!</p>
+            <p className='text-center text-sm mt-[20px] px-2'>Here are some of our active users on melodax. Join Us!!!</p>
         </div>
 
         <div className="flex items-center justify-center gap-[50px] mt-[50px] flex-col md:flex-row">

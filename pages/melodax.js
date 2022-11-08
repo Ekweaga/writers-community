@@ -62,8 +62,8 @@ const getPosts = async () =>{
     {lists.map((item)=>{
       return(
      <div  key={item.id} className="cursor-pointer w-[300px]"> <h1 className="text-2xl font-bold">{item?.title}</h1>
-     <p className="text-sm">{item?.post.substring(0,300)}</p>
-     <span className="cursor-pointer text-[#231A36]">Read more</span></div>
+     <p className="text-sm">{item?.post.substring(0,100)}....</p>
+     <span className="cursor-pointer text-[#E23972]">Read more</span></div>
       )
     })}
     </div>
