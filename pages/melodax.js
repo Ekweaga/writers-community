@@ -42,7 +42,7 @@ const getPosts = async () =>{
       </Head>
 
 <Navbar/>
-    <div className="md:h-[450px] bg-[#E23972] text-white py-4 flex justify-around flex-col md:flex-row ">
+    <div className="md:h-[450px] bg-[#E23972] text-white py-4 flex justify-around flex-col md:flex-row items-center">
       <div className='md:ml-[100px] md:mt-[100px] mt-[80px] px-3'>
         <h1 className='text-6xl font-bold mb-[20px]'>Stay Curious and <br/>Ready To Learn</h1>
         <p>Discover stories, thinking, and expertise from writers on any topic.</p>
@@ -50,7 +50,7 @@ const getPosts = async () =>{
           <button className='bg-white text-[#E23972] p-2 rounded-full w-[200px]'>{user ? <span onClick={()=>router.push("createpost")}>Create Post</span> : <span  onClick={()=>router.push('login')}>Start reading</span> }</button>
         </div>
       </div>
-      <div className='p-4'>
+      <div className='p-4 mt-[60px]'>
       <Image src="/learn.png" width={500} height={250} alt="learn"></Image>
       </div>
 
@@ -64,7 +64,7 @@ const getPosts = async () =>{
       return(
      <div  key={item.id} className=" w-[300px]"> <h1 className="text-2xl font-bold">{item?.title}</h1>
      <p className="text-sm w-[100px] ">{item?.post.substring(0,100)}....</p>
-     <span className="cursor-pointer text-[#E23972]"><Link href='/singlepost/[postid]'>Read more</Link></span></div>
+     <span className="cursor-pointer text-[#E23972]"><Link href={`/singlepost/${item?.id}`}>Read more</Link></span></div>
       )
     })}
     </div>
