@@ -6,7 +6,8 @@ import { collection,   onSnapshot,query } from "firebase/firestore";
 import {firebaseapp} from "./components/firebase"
 import {getFirestore} from "firebase/firestore"
 import { Auth } from './components/Context';
-
+import Link from "next/link"
+import Navbar from './components/Navbar';
 
 function Melodax() {
 const [lists,setLists] = useState([])
@@ -40,7 +41,7 @@ const getPosts = async () =>{
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-
+<Navbar/>
     <div className="md:h-[450px] bg-[#E23972] text-white py-4 flex justify-around flex-col md:flex-row ">
       <div className='md:ml-[100px] md:mt-[100px] mt-[80px] px-3'>
         <h1 className='text-6xl font-bold mb-[20px]'>Stay Curious and <br/>Ready To Learn</h1>
@@ -58,12 +59,12 @@ const getPosts = async () =>{
     </div>
 
     <div className='mt-[100px] md:h-[100vh]  '>
-<div className=' md:ml-[150px] grid grid-cols-1 md:grid-cols-4 gap-[20px]'>
+<div className=' md:ml-[150px] grid grid-cols-1 md:grid-cols-4 gap-[30px]'>
     {lists.map((item)=>{
       return(
-     <div  key={item.id} className="cursor-pointer w-[300px]"> <h1 className="text-2xl font-bold">{item?.title}</h1>
-     <p className="text-sm">{item?.post.substring(0,100)}....</p>
-     <span className="cursor-pointer text-[#E23972]">Read more</span></div>
+     <div  key={item.id} className=" w-[300px]"> <h1 className="text-2xl font-bold">{item?.title}</h1>
+     <p className="text-sm w-[100px] ">{item?.post.substring(0,100)}....</p>
+     <span className="cursor-pointer text-[#E23972]"><Link href='/singlepost/[postid]'>Read more</Link></span></div>
       )
     })}
     </div>
