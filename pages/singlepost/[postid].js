@@ -4,6 +4,7 @@ import {collection,doc,getDoc,getDocs,orderBy,query,getFirestore} from "firebase
 import {firebaseapp} from "../components/firebase"
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import Image from 'next/image'
 
 function PostDetail() {
     const router = useRouter()
@@ -64,8 +65,11 @@ function PostDetail() {
   return (
    <>
    <Navbar/>
-   <div className='text-black h-[100vh] bg-white mt-[120px] ml-[150px] '>
-    <div className='w-[700px]'>
+   <div className='text-black h-[100vh] bg-white mt-[120px] md:ml-[150px] ml-[30px] '>
+    <div className='md:w-[700px]'>
+      <div>
+      <Image src={postDetails?.Imageurl? item.imageUrl : null} width={300} height={300}/>
+      </div>
   
    <h1 className="text-3xl font-bold mb-[20px]">{postDetails?.title}</h1>
    <div>
@@ -74,6 +78,7 @@ function PostDetail() {
       </div>
       <div className='mt-[20px]'>
         <div>Author:
+      
           <h3 className="font-bold">{user?.Name}</h3>
         <p>{user?.Email}</p>
         </div>

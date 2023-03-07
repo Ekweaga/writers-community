@@ -21,6 +21,7 @@ const getPosts = async () =>{
   const unsubscribe = onSnapshot(querySnapshot, (querySnapshot) => {
     const cities = [];
     querySnapshot.forEach((doc) => {
+      
         cities.push(doc.data());
     });
    setLists(cities)
@@ -62,7 +63,9 @@ const getPosts = async () =>{
 <div className=' md:ml-[150px] grid grid-cols-1 md:grid-cols-4 gap-[30px]'>
     {lists.map((item)=>{
       return(
-     <div  key={item.id} className=" w-[300px]"> <h1 className="text-2xl font-bold">{item?.title}</h1>
+     <div  key={item.id} className=" w-[300px]"> <h1 className="text-2xl font-bold">
+      <div><Image src={item.Imageurl? item.imageUrl : null} width={300} height={300}/></div>
+      {item?.title}</h1>
      <p className="text-sm w-[100px] ">{item?.post.substring(0,100)}....</p>
      <span className="cursor-pointer text-[#E23972]"><Link href={`/singlepost/${item?.id}`}>Read more</Link></span></div>
       )
