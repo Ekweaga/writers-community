@@ -14,8 +14,11 @@ const [lists,setLists] = useState([])
 const projectfirestore = getFirestore(firebaseapp)
 const {user} = useContext(Auth)
 const router = useRouter();
-const getPosts = async () =>{
+const [loading,setLoading] = useState(false)
 
+
+const getPosts = async () =>{
+setLoading(true)
   const querySnapshot =query(collection(projectfirestore, "posts"));
 
   const unsubscribe = onSnapshot(querySnapshot, (querySnapshot) => {
@@ -23,8 +26,10 @@ const getPosts = async () =>{
     querySnapshot.forEach((doc) => {
       
         cities.push(doc.data());
+        setLoading(false)
     });
    setLists(cities)
+  
   });
  
 }
@@ -32,7 +37,10 @@ const getPosts = async () =>{
   useEffect(()=>{
     getPosts()
 
-  })
+  },[])
+  if(loading){
+  
+  }
   return (
     <>
 
@@ -59,8 +67,11 @@ const getPosts = async () =>{
 
     </div>
 
-    <div className='mt-[100px] md:h-[100vh]  '>
-<div className=' md:ml-[150px] grid grid-cols-1 md:grid-cols-4 gap-[30px]'>
+    <div className='mt-[100px]   '>
+
+      {
+        loading ? (<div className="flex items-center justify-center text-2xl"><p>Wait a little... Data Fetching</p></div>):(
+          <div className=' md:ml-[150px] grid grid-cols-1 md:grid-cols-4 gap-[30px]'>
     {lists.map((item)=>{
       return(
      <div  key={item.id} className=" w-[300px]"> <h1 className="text-2xl font-bold">
@@ -71,6 +82,9 @@ const getPosts = async () =>{
       )
     })}
     </div>
+        )
+}
+
     </div>
     </>
   )

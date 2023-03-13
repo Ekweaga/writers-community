@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from 'react'
 import {useRouter} from "next/router"
-import {collection,doc,getDoc,getDocs,orderBy,query,getFirestore} from "firebase/firestore"
+import {doc,getDoc,getFirestore} from "firebase/firestore"
 import {firebaseapp} from "../components/firebase"
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
@@ -78,6 +78,7 @@ function PostDetail() {
       </div>
       <div className='mt-[20px]'>
         <div>Author:
+          <Image src={user.userImage} width={50} height={50} alt="image" className='rounded-full'/>
       
           <h3 className="font-bold">{user?.Name}</h3>
         <p>{user?.Email}</p>

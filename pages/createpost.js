@@ -13,11 +13,11 @@ const [title,setTitle] = useState('')
 const [post,setPost] = useState('')
 const projectfirestore = getFirestore(firebaseapp)
 const auth = getAuth(firebaseapp)
-const {user} = useContext(Auth)
+ 
 const [url,setUrl] = useState('')
 const [loading,setLoading] = useState(false)
 const [progress,setProgress] = useState(null)
-const [count,setCount] = useState<number>(0)
+const [count,setCount] = useState(0)
 
 
 const Upload = (e)=>{
@@ -50,12 +50,13 @@ const Upload = (e)=>{
       setError("Upload an image to content");
       retun;
     }
-    updateDoc(doc(projectfirestore,"singleUser",`${user?.email}`),{
-      saveShows:arrayUnion({
+    updateDoc(doc(projectfirestore,"singleUserPosts",`${user?.email}`),{
+      savePosts:arrayUnion({
           title:title,
           post:post,
           imageUrl:url,
-          count:postCount + 1
+          count:postCount + 1,
+          userId:user.id
       })
     })
     setDoc(
@@ -89,7 +90,7 @@ const Upload = (e)=>{
        <textarea  placeholder="Create a Post"  className='border border-2-gray p-2 md:w-[600px] focus:outline-[#D1358F] h-[300px] w-[350px]' value={post} onChange={(e)=>setPost(e.target.value)}/>
     </div>
 
-    <div>
+    <div className='md:-ml-[450px] bg-[#BB49B0] text-white rounded p-2'>
       <input type="file" id="for" className="hidden" onChange={Upload}/>
       <label for="for" className="cursor-pointer">Add Image To Content</label>
     </div>

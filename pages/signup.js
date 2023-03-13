@@ -2,7 +2,6 @@ import React,{useState} from 'react'
 import {useRouter} from "next/router"
 import Link from 'next/link'
 import Head from 'next/head'
-import Image from 'next/image'
 import {createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider} from 'firebase/auth'
 import {firebaseapp} from "./components/firebase"
 import {getFirestore} from "firebase/firestore"
@@ -60,8 +59,8 @@ function Signup() {
           });
           
         });
-      setDoc(doc(projectfirestore,'singleUser', `${email}`),{
-        saveShows:[]
+      setDoc(doc(projectfirestore,'singleUserPosts', `${email}`),{
+        savePosts:[]
        })
       
      //  setLoading(false)

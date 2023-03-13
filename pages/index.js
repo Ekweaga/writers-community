@@ -22,7 +22,7 @@ export default function Home() {
         <Image src="/Mask Group.png" width={1400} height={500} alt="bg" ></Image>
        
         </div>
-        <div className=' flex justify-between flex-col-reverse md:flex-row'>
+        <div className=' flex justify-between flex-col-reverse md:flex-row' style={{zIndex:2}}>
           <div className='md:ml-[150px] md:-mt-[100px] z-10 px-4'>
             <h1 className="md:text-7xl text-[#71341A] text-6xl ">Tell your <br/>own story</h1>
             <p className='w-[350px] mt-[30px] text-sm'>Community of different writers and readers, you can wite your own story and read other people stories</p>
