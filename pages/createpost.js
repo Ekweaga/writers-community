@@ -6,7 +6,7 @@ import {getAuth} from  "firebase/auth";
 import {setDoc,doc} from "firebase/firestore"
 import { updateDoc,arrayUnion, onSnapshot } from "firebase/firestore"; 
 import { getStorage, ref, getDownloadURL, deleteObject, uploadBytesResumable } from "firebase/storage";
-import { Auth } from './components/Context';
+import { Auth } from '../components/Context';
 
 function Createpost() {
 const [title,setTitle] = useState('')

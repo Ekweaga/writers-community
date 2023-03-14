@@ -4,7 +4,7 @@ import {useRouter} from "next/router"
 import { collection,   onSnapshot,query } from "firebase/firestore";
 import {firebaseapp} from "../components/firebase"
 import {getFirestore} from "firebase/firestore"
-import { Auth } from './components/Context';
+import { Auth } from '../components/Context';
 import Link from "next/link"
 
 function Userpage() {
