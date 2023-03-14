@@ -5,9 +5,9 @@ import {useRouter} from "next/router"
 import { collection,   onSnapshot,query } from "firebase/firestore";
 import {firebaseapp} from "../components/firebase"
 import {getFirestore} from "firebase/firestore"
-import { Auth } from './components/Context';
+import { Auth } from '../components/Context';
 import Link from "next/link"
-import Navbar from './components/Navbar';
+import Navbar from '../components/Navbar';
 
 function Melodax() {
 const [lists,setLists] = useState([])

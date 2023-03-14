@@ -1,9 +1,9 @@
 import React,{useEffect,useState} from 'react'
 import {useRouter} from "next/router"
 import {doc,getDoc,getFirestore} from "firebase/firestore"
-import {firebaseapp} from "../components/firebase"
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
+import {firebaseapp} from "../../components/firebase"
+import Navbar from '../../components/Navbar'
+import Footer from '../../components/Footer'
 import Image from 'next/image'
 
 function PostDetail() {
