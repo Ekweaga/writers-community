@@ -37,7 +37,7 @@ setLoading(true)
   useEffect(()=>{
     getPosts()
 
-  },[getPosts])
+  },[getPosts()])
   if(loading){
   
   }
