@@ -29,7 +29,7 @@ function Userpage() {
 
   useEffect(()=>{
     getUserPost();
-  },[getUserPost()])
+  },[user])
   return (
    <>
    <div className='grid grid-cols-2 '>
