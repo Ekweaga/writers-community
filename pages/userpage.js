@@ -7,7 +7,7 @@ import {getFirestore} from "firebase/firestore"
 import { Auth } from './components/Context';
 import Link from "next/link"
 
-function userpage() {
+function Userpage() {
   const [posts,setPosts] = useState([])
   const [loading,setLoading] = useState(false)
   const {user} = useContext(Auth)
@@ -67,7 +67,7 @@ function userpage() {
    <div  key={item.id} className=" w-[300px]"> <h1 className="text-2xl font-bold">
   
     {item?.title}</h1>
-    <div><Image src={item.Imageurl? item.imageUrl : null} width={300} height={300}/></div>
+    <div><Image src={item.Imageurl? item.imageUrl : null} width={300} height={300} alt="image"/></div>
    <p className="text-sm w-[100px] ">{item?.post.substring(0,100)}....</p>
    <span className="cursor-pointer text-[#E23972]"><Link href={`/singlepost/${item?.id}`}>Read more</Link></span></div>
     )
@@ -86,4 +86,4 @@ function userpage() {
   )
 }
 
-export default userpage
+export default Userpage
