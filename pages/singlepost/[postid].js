@@ -68,7 +68,7 @@ function PostDetail() {
    <div className='text-black h-[100vh] bg-white mt-[120px] md:ml-[150px] ml-[30px] '>
     <div className='md:w-[700px]'>
       <div>
-      <Image src={postDetails?.Imageurl? item.imageUrl : null} width={300} height={300}/>
+      <Image src={postDetails?.Imageurl? item.imageUrl : null} width={300} height={300} alt="images"/>
       </div>
   
    <h1 className="text-3xl font-bold mb-[20px]">{postDetails?.title}</h1>
@@ -78,7 +78,7 @@ function PostDetail() {
       </div>
       <div className='mt-[20px]'>
         <div>Author:
-          <Image src={user.userImage} width={50} height={50} alt="image" className='rounded-full'/>
+          <Image src={user.userImage} width={50} height={50} alt="image" className='rounded-full' />
       
           <h3 className="font-bold">{user?.Name}</h3>
         <p>{user?.Email}</p>
