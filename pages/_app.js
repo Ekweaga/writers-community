@@ -1,6 +1,6 @@
 import '../styles/globals.css'
-import { AuthProvider } from './components/Context'
-import Layout from './components/Layout'
+import { AuthProvider } from '../components/Context'
+import Layout from '../components/Layout'
 
 function MyApp({ Component, pageProps }) {
   return (
