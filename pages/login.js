@@ -5,7 +5,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import {signInWithEmailAndPassword} from 'firebase/auth';
 import {getAuth} from  "firebase/auth";
-import {firebaseapp} from "./components/firebase"
+import {firebaseapp} from "../components/firebase"
 
 function Login() {
 

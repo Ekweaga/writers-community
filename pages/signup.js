@@ -3,7 +3,7 @@ import {useRouter} from "next/router"
 import Link from 'next/link'
 import Head from 'next/head'
 import {createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider} from 'firebase/auth'
-import {firebaseapp} from "./components/firebase"
+import {firebaseapp} from "../components/firebase"
 import {getFirestore} from "firebase/firestore"
 import {getAuth} from  "firebase/auth";
 import {setDoc,doc} from "firebase/firestore"

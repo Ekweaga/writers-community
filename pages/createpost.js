@@ -1,6 +1,6 @@
 import React,{useContext,useState} from 'react'
 import Head from 'next/head'
-import {firebaseapp} from "./components/firebase"
+import {firebaseapp} from "../components/firebase"
 import {getFirestore} from "firebase/firestore"
 import {getAuth} from  "firebase/auth";
 import {setDoc,doc} from "firebase/firestore"
